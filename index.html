@@ -9,7 +9,10 @@
 <body>
     <div class="wrap-all">
         <section class="exchange_currency_form">
-            <img src="src/images/logo.png" alt="Swap Rocket">
+            <div class="nav-bar">
+                <a href="/" title="Главная страница"><img src="src/images/logo.png" alt="Swap Rocket"></a>
+            </div>
+
             <div class="flex-row">
                 <div class="text-left">
                     <h1>Просто и выгодно обменять валюту</h1>
@@ -18,12 +21,12 @@
                 <div class="main_form">
                     <form action="" method="get">
                         <nav class="tabs">
-                            <div class="buy_tab">Купить</div>
-                            <div class="sell_tab">Продать</div>
+                            <div class="tab-buy active-tab">Купить</div>
+                            <div class="tab-sell">Продать</div>
                         </nav>
                         <select name="" id="">
-                            <option value="USD"></option>
-                            <option value="EURO"></option>
+                            <option value="USD">USD</option>
+                            <option value="EURO">EURO</option>
                         </select>
                         <input type="text" name="" placeholder="500" id="">
                         <input type="button" value="Найти где обменять">

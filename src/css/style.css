@@ -50,8 +50,20 @@ h1 ~ p {
 }
 .nav-bar {
     margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
 }
-.exchange_currency_form {
+.login-link {
+  border-radius: 10px;
+  border: 1px solid #036A01;
+  background: var(--linear-gradient);
+  box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  text-decoration: none;
+  padding: 0.588rem 1.976rem 0.6rem;
+}
+.container{
   max-width: 960px;
   margin-inline: auto;
 }
@@ -81,7 +93,7 @@ h1 ~ p {
   flex-direction: column;
   max-width: 280px;
 }
-nav.tabs {
+nav.tabs, nav.currency-tabs {
   display: flex;
   position: absolute;
   top: 0;
@@ -94,7 +106,7 @@ nav.tabs {
   font-size: 15px;
   margin: -3px 0;
 }
-.tabs .active-tab {
+.tabs .active-tab, .currency-tabs .tab-sell{
   border-radius: 0 0 15px 15px;
   border: 1px solid #036a01;
   background: rgba(81, 216, 111, 0.8);
@@ -145,6 +157,79 @@ input[type="button"]:active {
   background: rgba(81, 216, 111, 0.95);
   box-shadow: none;
   top: 0;
+}
+.flex-start {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+}
+.exchange_results{
+  padding: 3rem 0;
+  min-height: 50vh;
+}
+.exchange_results h2{
+  max-width: 300px;
+  font-size: 36px;
+  color: #F5F5F5;
+}
+.exchangers {
+  display: grid;
+  grid-template-columns: 300px 300px;
+  gap: 30px;
+}
+.item {
+  border-radius: 24.862px;
+  border: 0.1rem solid #036A01;
+  box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(20px);
+  padding: 30px;
+}
+.currency-data {
+  padding-top: 30px;
+}
+.currency-value {
+  color: #F5F5F5;
+  font-family: "e-Ukraine-Bold";
+  font-size: 32px;
+}
+.currency-sum {
+  color: #C0C0C0;
+  font-size: 18px;
+  margin: 10px 0;
+}
+.wrap-icon {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+.icon-bg {
+  background: var(--linear-gradient);
+  border-radius: 15px;
+  padding: 15px;
+}
+.wrap-icon > a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+@media (max-width: 959px) {
+.container {
+    padding: 0 2rem;
+}
+  .exchangers {
+    grid-template-columns: 300px;
+    gap: 30px;
+}
+}
+@media (max-width: 690px) {
+  .flex-start {
+    align-items: center;
+    flex-direction: column;
+}
 }
 @media (max-width: 568px) {
   .exchange_currency_form {

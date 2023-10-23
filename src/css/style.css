@@ -106,7 +106,10 @@ nav.tabs, nav.currency-tabs {
   font-size: 15px;
   margin: -3px 0;
 }
-.tabs .active-tab, .currency-tabs .tab-sell{
+form [type="radio"] {
+  display: none;
+}
+.tabs input:checked + label, .currency-tabs .tab-sell{
   border-radius: 0 0 15px 15px;
   border: 1px solid #036a01;
   background: rgba(81, 216, 111, 0.8);
@@ -114,7 +117,7 @@ nav.tabs, nav.currency-tabs {
   backdrop-filter: blur(5.089605808258057px);
 }
 select,
-input[type="text"] {
+#search-currency {
   border-radius: 15px;
   border: 2px solid #036a01;
   backdrop-filter: blur(5.089605808258057px);
@@ -131,12 +134,12 @@ section option:focus,
 section option:checked {
   background: #000;
 }
-input[type="text"] {
+#search-currency {
   margin: 10px 0 40px 0;
   padding: 0.8rem;
   font-size: 1.8rem;
 }
-input[type="button"] {
+button[type="submit"] {
   position: relative;
   width: 100%;
   height: 58px;
@@ -153,7 +156,7 @@ input[type="button"] {
   top: -1px;
   transition: all 30ms ease-in-out;
 }
-input[type="button"]:active {
+button[type="submit"]:active {
   background: rgba(81, 216, 111, 0.95);
   box-shadow: none;
   top: 0;
@@ -169,7 +172,7 @@ input[type="button"]:active {
 }
 .exchange_results h2{
   max-width: 300px;
-  font-size: 36px;
+  font-size: 35px;
   color: #F5F5F5;
 }
 .exchangers {

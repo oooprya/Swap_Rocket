@@ -168,7 +168,6 @@ button[type="submit"]:active {
 }
 .exchange_results{
   padding: 3rem 0;
-  min-height: 50vh;
 }
 .exchange_results h2{
   max-width: 300px;
@@ -204,6 +203,7 @@ button[type="submit"]:active {
   display: flex;
   justify-content: flex-start;
   margin-top: 2rem;
+  gap: 2rem;
 }
 .icon-bg {
   background: var(--linear-gradient);

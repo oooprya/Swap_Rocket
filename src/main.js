@@ -5,21 +5,19 @@ const titleResults = document.getElementById("title_results");
 const favoriteRecipes = document.querySelector(".favoriteRecipes");
 const container = document.querySelector(".container");
 
-
+let minSumVolue = 100
 let itemTab = "buy"
-let sale_or_buy = itemTab=="buy" ? true : false
+let selle_or_buy = itemTab=="buy" ? true : false
 
 tabRadio.forEach((e) => {
   e.addEventListener("change", function(e) {
     itemTab = e.target.value;
-    sale_or_buy = itemTab=="buy" ? true : false
-    console.log(itemTab, sale_or_buy);
+    selle_or_buy = itemTab=="buy" ? true : false
+    console.log(itemTab, selle_or_buy);
 
   });
 });
-const filterMinSum = () => {
 
-}
 
 const filterObjects = (exchangers, searchQuery) => {
 	const strToNumRange = (str) =>
@@ -36,36 +34,58 @@ const filterObjects = (exchangers, searchQuery) => {
       },
     }));
 
-
   return filteredByCurrency.filter((object) => {
     const arr = strToNumRange(object.currency.sum);
-    console.log(arr, searchQuery.currency);
+    sell_or_buy_value = selle_or_buy ? object.currency.sell : object.currency.buy
+    // console.log(arr, sell_or_buy_value);
+    minSumVolue = arr[0]
     if (arr.length > 1) {
       return arr[0] <=searchQuery.amount && searchQuery.amount  <= arr[1];
     }
-
+    console.log(minSumVolue);
     return searchQuery.amount >= arr[0];
   });
 };
 
+const descendExchangersSort = (exchangers, sellOrBuy) =>
+	exchangers.sort( (a, b) => +b.currency[sellOrBuy] - +a.currency[sellOrBuy])
+
+const ascendExchangersSort = (exchangers, sellOrBuy) =>
+	exchangers.sort( (a, b) => +a.currency[sellOrBuy] - +b.currency[sellOrBuy])
+
 const renderList = (data) => {
   const lowest_sale = 'Найдена самая низкая продажа'
   const high_buy = 'Найдена самая высокая покупка'
-  titleResults.innerHTML = sale_or_buy ? lowest_sale : high_buy;
+
+  titleResults.innerHTML = selle_or_buy ? lowest_sale : high_buy;
   const exchangerItem = (item) => `
 		<div class="item">
+      <span></span>
 			<nav class="currency-tabs">
-				<div class="tab-sell">Продажа</div>
+				<div class="tab-sell">${selle_or_buy ? 'продажа' : 'покупка'}</div>
 			</nav>
 			<div class="currency-data">
-				<div class="currency-value"> ${sale_or_buy ? item.currency.sell : item.currency.buy} </div>
+				<div class="currency-value"> ${selle_or_buy ? item.currency.sell : item.currency.buy} </div>
 				<div class="currency-sum">
 				${item.currency.sum}
-				<span class="currency-key">${item.currency.title.toUpperCase()}</span>
 			</div>
 		</div>
 		<div class="exchanger-address">${item.address}</div>
 		<div class="wrap-icon">
+    <a target="_blank" href="https://maps.app.goo.gl/bdqnmcfXoC35S4jy9">
+                  <svg width="50" height="49" viewBox="0 0 50 49" fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path
+                          d="M0.366211 24.8991C0.366211 16.2131 0.366211 11.8701 2.14011 8.59017C3.50288 6.07043 5.57067 4.00263 8.09041 2.63986C11.3703 0.865967 15.7133 0.865967 24.3994 0.865967H25.2281C33.9141 0.865967 38.2571 0.865967 41.537 2.63986C44.0568 4.00263 46.1246 6.07043 47.4873 8.59017C49.2612 11.8701 49.2612 16.2131 49.2612 24.8991C49.2612 33.5851 49.2612 37.9282 47.4873 41.2081C46.1246 43.7278 44.0568 45.7956 41.537 47.1584C38.2571 48.9323 33.9141 48.9323 25.2281 48.9323H24.3994C15.7133 48.9323 11.3703 48.9323 8.09041 47.1584C5.57067 45.7956 3.50288 43.7278 2.14011 41.2081C0.366211 37.9282 0.366211 33.5851 0.366211 24.8991Z"
+                          fill="#51D86F" fill-opacity="0.8" />
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M24.3995 16.4277C21.1923 16.4277 18.5984 19.0216 18.5984 22.2288C18.5984 26.5796 24.3995 33.0023 24.3995 33.0023C24.3995 33.0023 30.2006 26.5796 30.2006 22.2288C30.2006 19.0216 27.6067 16.4277 24.3995 16.4277ZM20.2558 22.2287C20.2558 19.9415 22.1122 18.0851 24.3995 18.0851C26.6868 18.0851 28.5431 19.9415 28.5431 22.2287C28.5431 24.6155 26.1564 28.1873 24.3995 30.4166C22.6757 28.2039 20.2558 24.5906 20.2558 22.2287Z"
+                          fill="#F5F5F5" />
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M24.3995 24.3006C25.5437 24.3006 26.4713 23.373 26.4713 22.2288C26.4713 21.0845 25.5437 20.157 24.3995 20.157C23.2552 20.157 22.3276 21.0845 22.3276 22.2288C22.3276 23.373 23.2552 24.3006 24.3995 24.3006Z"
+                          fill="#F5F5F5" />
+                  </svg>
+                  Маршрут</a>
 			<a href="tel:+38${item.exchanger_info}">
       <svg width="50" height="49" viewBox="0 0 50 49" fill="none"
         xmlns="http://www.w3.org/2000/svg">
@@ -81,7 +101,7 @@ const renderList = (data) => {
 		</div>
 	</div>`
 
-  exchangerResult.innerHTML = data.map((item) => exchangerItem(item)).join('');
+  exchangerResult.innerHTML = data.map((item) => exchangerItem(item)).join('') ;
 };
 
 const handleSubmit = async (e) => {
@@ -97,14 +117,21 @@ const handleSubmit = async (e) => {
 
 	const result = filterObjects(data.objects, searchQuery);
 
-  // const minSumVolue = filterMinSum(currency);
-  // if (result.length == 0){
-  //   console.log(result.length == 0);
-  //   titleResults.innerHTML = `Вы ввели суммуа ${amount}${currency} \n  Минимальная сумма покупки ${minSumVolue}  `;
-  // }
+  const sorted = selle_or_buy ? descendExchangersSort(result, 'buy') : ascendExchangersSort(result, 'sell');
 
-	renderList(result);
+  renderList(sorted);
   exchangerResult.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+
+
+
+  if (searchQuery.amount < minSumVolue){
+   document.getElementById("exchangers_results").innerHTML = `Вы ввели суммуа ${amount} ${currency} \n  Минимальная сумма ${selle_or_buy ? 'продажи' : 'покупки'} ${minSumVolue} ${currency} `;
+  }
+
+  if (searchQuery.amount >= minSumVolue){
+
+  }
+
 }
 
 searchForm.addEventListener('submit', handleSubmit)

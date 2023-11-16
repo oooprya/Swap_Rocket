@@ -37,7 +37,7 @@ const filterObjects = (exchangers, searchQuery) => {
   return filteredByCurrency.filter((object) => {
     const arr = strToNumRange(object.currency.sum);
     sell_or_buy_value = selle_or_buy ? object.currency.sell : object.currency.buy
-    // console.log(arr, sell_or_buy_value);
+    console.log(arr, sell_or_buy_value);
     minSumVolue = arr[0]
     if (arr.length > 1) {
       return arr[0] <=searchQuery.amount && searchQuery.amount  <= arr[1];
@@ -67,12 +67,12 @@ const renderList = (data) => {
 			<div class="currency-data">
 				<div class="currency-value"> ${selle_or_buy ? item.currency.sell : item.currency.buy} </div>
 				<div class="currency-sum">
-				${item.currency.sum}
+        ${item.currency.sum}
 			</div>
 		</div>
 		<div class="exchanger-address">${item.address}</div>
 		<div class="wrap-icon">
-    <a target="_blank" href="https://maps.app.goo.gl/bdqnmcfXoC35S4jy9">
+    <a target="_blank" href="https://www.google.com/maps/place/${item.address}+Одесса,+Одесская+область,+65000">
                   <svg width="50" height="49" viewBox="0 0 50 49" fill="none"
                       xmlns="http://www.w3.org/2000/svg">
                       <path
@@ -86,7 +86,7 @@ const renderList = (data) => {
                           fill="#F5F5F5" />
                   </svg>
                   Маршрут</a>
-			<a href="tel:+38${item.exchanger_info}">
+			<a href="tel:+38${item.telephone}">
       <svg width="50" height="49" viewBox="0 0 50 49" fill="none"
         xmlns="http://www.w3.org/2000/svg">
           <path

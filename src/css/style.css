@@ -83,12 +83,13 @@ h1 ~ p {
   flex: 0 0 330px;
   border-radius: 26.667px;
   border: 2px solid #036a01;
-  box-shadow: 0px 5px 50px 4px rgb(0 49 15 / 30%);
+  box-shadow: 0px 5px 50px 4px rgb(0 49 15 / 30%), 0 0 16px hwb(130deg 0% 0% / 35%);
+  background: hsl(260deg 81.08% 14.51% / 60%);
   backdrop-filter: blur(10px);
   padding: 40px;
   box-sizing: border-box;
 }
-.exchange_currency_form form {
+.exchange_currency_form form , .card form {
   display: flex;
   flex-direction: column;
   max-width: 280px;
@@ -105,6 +106,7 @@ nav.tabs, nav.currency-tabs {
   padding: 0.4rem 1.4rem;
   font-size: 15px;
   margin: -3px 0;
+  cursor: pointer;
 }
 form [type="radio"] {
   display: none;
@@ -113,10 +115,10 @@ form [type="radio"] {
   border-radius: 0 0 15px 15px;
   border: 1px solid #036a01;
   background: rgba(81, 216, 111, 0.8);
-  box-shadow: 0px 5.08961px 12.72401px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 5.08961px 12.72401px 0px rgba(0, 0, 0, 0.25), 0 0 16px hwb(130deg 0% 0% / 35%);
   backdrop-filter: blur(5.089605808258057px);
 }
-select,
+select, input.input,
 #search-currency {
   border-radius: 15px;
   border: 2px solid #036a01;
@@ -139,7 +141,12 @@ section option:checked {
   padding: 0.8rem;
   font-size: 1.8rem;
 }
-button[type="submit"] {
+input.input {
+  margin: 10px 0 30px 0;
+  padding: 0.6rem;
+  font-size: 1.2rem;
+}
+button[type="submit"], .btn {
   position: relative;
   width: 100%;
   height: 58px;
@@ -151,14 +158,14 @@ button[type="submit"] {
   border-radius: 17.778px;
   border: 1.527px solid #036a01;
   background: var(--linear-gradient);
-  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 5px 50px 4px rgb(0 49 15 / 30%);
   backdrop-filter: blur(10px);
   top: -1px;
   transition: all 30ms ease-in-out;
 }
 button[type="submit"]:active {
   background: rgba(81, 216, 111, 0.95);
-  box-shadow: none;
+  box-shadow: 0 0 16px hwb(130deg 0% 0% / 35%);
   top: 0;
 }
 .flex-start {
@@ -173,6 +180,8 @@ button[type="submit"]:active {
   max-width: 300px;
   font-size: 35px;
   color: #F5F5F5;
+  position: sticky;
+    top: 2rem;
 }
 .exchangers {
   display: grid;
@@ -180,12 +189,18 @@ button[type="submit"]:active {
   gap: 30px;
 }
 .item {
+  position: relative;
   border-radius: 24.862px;
   border: 0.1rem solid #036A01;
   box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(20px);
   background: hsl(260deg 81.08% 14.51% / 60%);
   padding: 30px;
+  transition: all 200ms ease-in-out;
+}
+.item:hover{
+  background: hsl(260deg 75 10% / 100%);
+  top: -2px;
 }
 .currency-data {
   padding-top: 30px;
@@ -241,6 +256,16 @@ section.footer {
 }
 }
 @media (max-width: 568px) {
+  nav {
+    font-size: 15px;
+  }
+  .container {
+    padding: 0 1rem;
+}
+body{
+  backdrop-filter: blur(20px);
+  background-size: contain;
+}
   .exchange_currency_form {
     padding: 1.5rem;
   }
@@ -268,5 +293,8 @@ section.footer {
     padding: 1rem;
     padding-top: 3rem;
     width: 100%;
+  }
+  .exchange_results h2 {
+    position: relative;
   }
 }
